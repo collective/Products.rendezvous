@@ -4,7 +4,8 @@
       i18n:domain="rendezvous">
 <body>
 
-<div metal:fill-slot="main">
+<div metal:fill-slot="main"
+     tal:define="member context/portal_membership/getAuthenticatedMember">
   <p class="rendezvous_help" i18n:translate="help_rendezvous_choice">
     Click on a cell to mark the option is available for you, and click on it again to mark it as unavailable.
     Then click on 'save'.

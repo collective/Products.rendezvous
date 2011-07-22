@@ -4,6 +4,9 @@ Changelog
 1.2.2 (unreleased)
 ------------------
 
+- Plone 4.1 compatibility.
+  [thomasdesvenain]
+
 - French translations.
 
 
