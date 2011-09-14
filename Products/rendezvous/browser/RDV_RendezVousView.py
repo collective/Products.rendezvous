@@ -12,6 +12,7 @@
 __author__ = """Vincent Fretin <vincentfretin@ecreall.com>"""
 __docformat__ = 'plaintext'
 
+from DateTime import DateTime
 ##code-section module-header #fill in your manual code here
 from Products.rendezvous.browser.RDV_RendezVousUtility import RDV_RendezVousUtility
 from plone.memoize.instance import memoize
@@ -19,7 +20,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from Products.CMFCore.interfaces import ISiteRoot
 ##/code-section module-header
-
+from Acquisition import aq_inner
 from zope import interface
 from zope import component
 from Products.CMFPlone import utils
@@ -43,7 +44,69 @@ class RDV_RendezVousView(BrowserView):
     def getPropositionsItemsByOrderedDates(self):
         context = self.context.aq_inner
         propositions_by_dates = context.getPropositionObjectsByDates()
-        return [(date, propositions_by_dates[date]) for date in sorted(propositions_by_dates.keys())]
+
+        props = [({'label': date,
+                  'props': self._getPropositions(propositions_by_dates, date),
+                  'class': 'rendezvous-datechoice %s' % self._getIsoDateFromLabel(date)})
+                  for date in sorted(propositions_by_dates.keys())]
+        return props
+
+    def _getIsoDateFromLabel(self, label):
+        return DateTime(label).ISO()
+
+    def _parse_hour(self, hour):
+        hour = hour.replace(' ', '')
+        hour = hour.replace('h', ':')
+        hour = hour.replace('H', ':')
+        hour, sep, minute = hour.partition(':')
+        try:
+            hour = int(hour)
+            if hour > 24:
+                return None
+        except ValueError:
+            return None
+        try:
+            minute = int(minute)
+        except ValueError:
+            minute = 0
+
+        if minute > 59:
+            minute = 0
+
+        return "%2d:%2d" % (hour, minute)
+
+    def _getKlassFromDateAndProposition(self, date, proposition):
+        # separate two hours (can be separated by ' ' and '-'
+        hourrange = proposition.replace(' ', '-')
+        hourrange = [h for h in hourrange.split('-') if h]
+        klass = ''
+        hours = []
+        for hour in hourrange:
+            parsehour = self._parse_hour(hour)
+            if parsehour:
+                hours.append(parsehour)
+
+        if len(hours) > 0:
+            start = DateTime(date + ' ' + hours[0])
+            if len(hours) > 1:
+                end = DateTime(date + ' ' + hours[1])
+            else:
+                end = start + 1./24
+            klass += 'rendezvous-datechoice %s--%s' % (start.ISO(), end.ISO())
+        else:
+            return self._getIsoDateFromLabel(date)
+
+        return klass
+
+
+    def _getPropositions(self, propositions_by_dates, date):
+        propositions = []
+        for proposition, uid in propositions_by_dates[date]:
+            klass = self._getKlassFromDateAndProposition(date, proposition)
+            propositions.append({'class': klass,
+                                 'label': proposition,
+                                 'participation': uid})
+        return propositions
 
     def getParticipationClass(self, participant, proposition):
         prop_obj = getattr(self.context, proposition)
@@ -96,7 +159,26 @@ class RDV_RendezVousView(BrowserView):
         return [p[1] for date, propositions in self.getPropositionsItemsByOrderedDates()
                          for p in propositions]
 
-##code-section module-footer #fill in your manual code here
-##/code-section module-footer
+    def canCreateEvent(self):
+        """Check if user can create an event
+        """
+        context = aq_inner(self.context)
+        mtool = getToolByName(self.context,
+                               'portal_membership')
+        return mtool.checkPermission('Modify portal content', context) \
+                and mtool.checkPermission('ATContentTypes: Add Event',
+                                          context.getParentNode())
 
+    def rendezvous_create_event(self):
+        dates = self.request['date'].split('--')
+        query = 'type_name=Event&title=' + self.context.Title()
+        if len(dates) >= 1:
+            query += '&startDate=' + str(DateTime(dates[0]).strftime('%Y/%m/%d %H:%M'))
+            if len(dates) == 2:
+                query += '&endDate=' + str(DateTime(dates[1]).strftime('%Y/%m/%d %H:%M'))
+
+        parent = aq_inner(self.context).getParentNode()
+        uid = self.context.generateUniqueId('Event')
+        url =  '%s/portal_factory/Event/%s/edit?%s' % (parent.absolute_url(), uid, query)
+        self.request.response.redirect(url)
 

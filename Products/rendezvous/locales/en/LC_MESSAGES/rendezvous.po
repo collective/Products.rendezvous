@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rendezvous\n"
-"POT-Creation-Date: 2010-09-13 14:52+0000\n"
+"POT-Creation-Date: 2011-09-14 12:13+0000\n"
 "PO-Revision-Date: 2008-11-18 16:05+0100\n"
 "Last-Translator: Vincent Fretin <vincentfretin@ecreall.com>\n"
 "Language-Team: English\n"
@@ -16,13 +16,17 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: rendezvous\n"
 
+#: ./browser/templates/RDV_RendezVousView.pt:17
+msgid "Click here and select a date to create the event from this poll"
+msgstr ""
+
 #. Default: "Continue"
 #: ./skins/rendezvous_templates/rdv_rendezvous_edit.pt:4
 msgid "Continue"
 msgstr ""
 
 #. Default: "Save"
-#: ./browser/templates/RDV_RendezVousView.pt:86
+#: ./browser/templates/RDV_RendezVousView.pt:96
 msgid "Save"
 msgstr ""
 
@@ -52,7 +56,7 @@ msgid "help_rendezvous"
 msgstr ""
 
 #. Default: "Click on a cell to mark the option is available for you, and click on it again to mark it as unavailable. Then click on 'save'."
-#: ./browser/templates/RDV_RendezVousView.pt:8
+#: ./browser/templates/RDV_RendezVousView.pt:10
 msgid "help_rendezvous_choice"
 msgstr ""
 

@@ -23,6 +23,13 @@
      permission="zope2.View"
      />
 
+  <browser:page
+     for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
+     name="rendezvous_create_event"
+     attribute="rendezvous_create_event"
+     class="Products.rendezvous.browser.RDV_RendezVousView.RDV_RendezVousView"
+     permission="zope2.View"
+     />
 <!-- ##code-section BROWSER #fill in your manual code here -->
   <browser:page
      for="Products.rendezvous.content.interfaces.IRDV_RendezVous"

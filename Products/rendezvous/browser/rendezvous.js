@@ -3,8 +3,9 @@ var rendezvous = {};
 
 
 rendezvous.init = function(){
-	jq('.template-edit_dates').each(rendezvous.initchoicesselection)
-	jq('.template-rendezvous_view').each(rendezvous.inituserchoice)
+	jq('.template-edit_dates').each(rendezvous.initchoicesselection);
+	jq('.template-rendezvous_view').each(rendezvous.inituserchoice);
+	jq('#rendezvous-choose-date').click(rendezvous.startdatechoice);
 }
 
 rendezvous.initchoicesselection = function(){
@@ -39,7 +40,24 @@ rendezvous.toggleuserchoice = function(){
 		input.attr('value', '');
 		span.html('');
 	}
-
 }
 
+rendezvous.startdatechoice = function(){
+	jq('body').css('cursor', 'pointer');
+	jq('.rendezvous-datechoice').css('color', 'blue');
+	jq('#rendezvous').click(rendezvous.enddatechoice);
+	jq('.rendezvous-datechoice').click(rendezvous.selectdatechoice);
+}
+
+rendezvous.enddatechoice = function(){
+	jq('body').css('cursor', 'default');
+	jq('#rendezvous').unbind('click');
+	jq('.rendezvous-datechoice').removeAttr('style');
+}
+
+rendezvous.selectdatechoice = function(){
+	var base_url = jq('base').attr('href');
+	var date = jq(this).attr('class').split(' ')[1];
+	window.location.href = base_url + '@@rendezvous_create_event?date=' + date;
+}
 jq(document).ready(rendezvous.init);

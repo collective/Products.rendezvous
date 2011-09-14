@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -15,36 +12,41 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: plone\n"
+"Domain: DOMAIN\n"
 
+#. Default: "A slot for the rendez-vous"
 #: profiles/default/types/RDV_Proposition.xml
 msgid "A slot for the rendez-vous"
-msgstr ""
+msgstr "Un créneau pour un rendez-vous"
 
+#. Default: "A timeboard to select a rendez-vous"
 #: profiles/default/types/RDV_RendezVous.xml
 msgid "A timeboard to select a rendez-vous"
-msgstr ""
+msgstr "Un tableau pour choisir un rendez-vous"
 
 #: profiles/default/workflows/RDV_PropositionWorkflow/definition.xml
 #: profiles/default/workflows/RDV_RendezVousWorkflow/definition.xml
 msgid "Private"
-msgstr ""
+msgstr "Privé"
 
+#. Default: "Proposition"
 #: profiles/default/types/RDV_Proposition.xml
 msgid "Proposition"
-msgstr ""
+msgstr "Proposition"
 
+#. Default: "Rendez-vous"
 #: profiles/default/types/RDV_RendezVous.xml
 msgid "Rendez-vous"
-msgstr ""
+msgstr "Rendez-vous"
 
+#. Default: "Visible"
 #: profiles/default/workflows/RDV_PropositionWorkflow/definition.xml
 #: profiles/default/workflows/RDV_RendezVousWorkflow/definition.xml
 msgid "Visible"
-msgstr ""
+msgstr "Visible"
 
 #: profiles/default/workflows/RDV_PropositionWorkflow/definition.xml
 #: profiles/default/workflows/RDV_RendezVousWorkflow/definition.xml
 msgid "show"
-msgstr ""
+msgstr "afficher"
 

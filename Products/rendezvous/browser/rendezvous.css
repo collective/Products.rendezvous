@@ -45,3 +45,8 @@
 #rendezvous td.selectable {
   cursor: pointer;
 }
+
+#rendezvous-choose-date{
+    cursor: pointer;
+    float:right;
+}

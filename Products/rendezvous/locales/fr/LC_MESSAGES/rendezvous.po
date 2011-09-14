@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rendezvous\n"
-"POT-Creation-Date: 2010-09-13 14:52+0000\n"
+"POT-Creation-Date: 2011-09-14 12:13+0000\n"
 "PO-Revision-Date: 2008-11-18 16:06+0100\n"
 "Last-Translator: Vincent Fretin <vincentfretin@ecreall.com>\n"
 "Language-Team: French\n"
@@ -15,13 +15,17 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: rendezvous\n"
 
+#: ./browser/templates/RDV_RendezVousView.pt:17
+msgid "Click here and select a date to create the event from this poll"
+msgstr "Cliquez ici puis sélectionnez une date pour créer un événement à partir de ce sondage"
+
 #. Default: "Continue"
 #: ./skins/rendezvous_templates/rdv_rendezvous_edit.pt:4
 msgid "Continue"
 msgstr "Continuer"
 
 #. Default: "Save"
-#: ./browser/templates/RDV_RendezVousView.pt:86
+#: ./browser/templates/RDV_RendezVousView.pt:96
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -51,7 +55,7 @@ msgid "help_rendezvous"
 msgstr "Vous pouvez créer un sondage pour organiser une réunion ou un évènement. Remplissez l'objet de votre rendez-vous et cliquez sur le bouton  \"Étape suivante\" pour sélectionner vos dates et horaires."
 
 #. Default: "Click on a cell to mark the option is available for you, and click on it again to mark it as unavailable. Then click on 'save'."
-#: ./browser/templates/RDV_RendezVousView.pt:8
+#: ./browser/templates/RDV_RendezVousView.pt:10
 msgid "help_rendezvous_choice"
 msgstr "Cliquez sur les choix pour lesquels vous êtes disponible. Cliquez à nouveau pour les marquer comme indisponibles. Puis validez par \"Enregistrer\"."
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rendezvous\n"
-"POT-Creation-Date: 2008-12-11 09:45+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2008-11-18 16:11+0100\n"
 "Last-Translator: Vincent Fretin <vincentfretin@ecreall.com>\n"
 "Language-Team: French\n"
@@ -14,35 +14,4 @@ msgstr ""
 "Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
-
-#. Default: "A slot for the rendez-vous"
-#: profiles/default/types/RDV_Proposition.xml
-msgid "A slot for the rendez-vous"
-msgstr "Un créneau pour un rendez-vous"
-
-#. Default: "A timeboard to select a rendez-vous"
-#: profiles/default/types/RDV_RendezVous.xml
-msgid "A timeboard to select a rendez-vous"
-msgstr "Un tableau pour choisir un rendez-vous"
-
-#. Default: "Metadata"
-#: profiles/default/types/RDV_RendezVous.xml
-msgid "Metadata"
-msgstr "Métadonnées"
-
-#. Default: "Proposition"
-#: profiles/default/types/RDV_Proposition.xml
-msgid "Proposition"
-msgstr "Proposition"
-
-#. Default: "Rendez-vous"
-#: profiles/default/types/RDV_RendezVous.xml
-msgid "Rendez-vous"
-msgstr "Rendez-vous"
-
-#. Default: "Visible"
-#: profiles/default/workflows/RDV_RendezVousWorkflow/definition.xml
-#: profiles/default/workflows/RDV_PropositionWorkflow/definition.xml
-msgid "Visible"
-msgstr ""
 
