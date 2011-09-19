@@ -124,7 +124,8 @@ class RDV_RendezVousEdit(BrowserView):
         form = request.form
 
         # edit title
-        title = form.pop('title')
+
+        title = 'title' in form and form.pop('title', False)
         if title: context.setTitle(title)
         finish = form.pop('finish', False)
         extend = form.pop('extend', False)

@@ -156,8 +156,8 @@ class RDV_RendezVousView(BrowserView):
         return len(getattr(self.context, prop_id).getAvailable())
 
     def _getAllPropositionsIds(self):
-        return [p[1] for date, propositions in self.getPropositionsItemsByOrderedDates()
-                         for p in propositions]
+        return [p['participation'] for date in self.getPropositionsItemsByOrderedDates()
+                         for p in date['props']]
 
     def canCreateEvent(self):
         """Check if user can create an event
