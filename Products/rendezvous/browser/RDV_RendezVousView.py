@@ -177,7 +177,11 @@ class RDV_RendezVousView(BrowserView):
             query += '&startDate=' + str(startdate.strftime('%Y/%m/%d %H:%M'))
             if len(dates) == 2:
                 enddate = DateTime(dates[1].replace('-', '/').replace('T', ' '))
-                query += '&endDate=' + str(enddate.strftime('%Y/%m/%d %H:%M'))
+            else:
+                enddate = startdate + 1
+
+            query += '&endDate=' + str(enddate.strftime('%Y/%m/%d %H:%M'))
+
 
         parent = aq_inner(self.context).getParentNode()
         uid = self.context.generateUniqueId('Event')
