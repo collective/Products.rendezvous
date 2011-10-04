@@ -48,6 +48,7 @@
 
 #rendezvous-choose-date{
     cursor: pointer;
+    padding: 8px 0
 }
 #rendez-vous-choose-date span {
 	text-decoration: underline;
