@@ -94,11 +94,9 @@ class RDV_RendezVousView(BrowserView):
                 end = DateTime(date + ' ' + hours[1])
             else:
                 end = start + 1./24
+            klass += 'rendezvous-datechoice %s--%s' % (start.ISO(), end.ISO())
         else:
-            start = DateTime(date + ' ' + '09:00')
-            end = DateTime(date + ' ' + '17:00')
-
-        klass += 'rendezvous-datechoice %s--%s' % (start.ISO(), end.ISO())
+            return self._getIsoDateFromLabel(date)
 
         return klass
 
