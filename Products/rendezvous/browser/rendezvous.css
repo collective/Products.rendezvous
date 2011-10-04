@@ -49,3 +49,6 @@
 #rendezvous-choose-date{
     cursor: pointer;
 }
+#rendez-vous-choose-date span {
+	text-decoration: underline;
+}

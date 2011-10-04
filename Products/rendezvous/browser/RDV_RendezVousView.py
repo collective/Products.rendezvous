@@ -45,9 +45,11 @@ class RDV_RendezVousView(BrowserView):
         context = self.context.aq_inner
         propositions_by_dates = context.getPropositionObjectsByDates()
 
-        props = [({'label': date,
+        props = [{'label': date,
                   'props': self._getPropositions(propositions_by_dates, date),
-                  'class': 'rendezvous-datechoice %s' % self._getIsoDateFromLabel(date)})
+                  'class': 'rendezvous-datechoice %s--%s' % (
+                                     DateTime(date + ' ' + '09:00').ISO(),
+                                     DateTime(date + ' ' + '17:00').ISO()),}
                   for date in sorted(propositions_by_dates.keys())]
         return props
 
@@ -92,9 +94,11 @@ class RDV_RendezVousView(BrowserView):
                 end = DateTime(date + ' ' + hours[1])
             else:
                 end = start + 1./24
-            klass += 'rendezvous-datechoice %s--%s' % (start.ISO(), end.ISO())
         else:
-            return self._getIsoDateFromLabel(date)
+            start = DateTime(date + ' ' + '09:00')
+            end = DateTime(date + ' ' + '17:00')
+
+        klass += 'rendezvous-datechoice %s--%s' % (start.ISO(), end.ISO())
 
         return klass
 

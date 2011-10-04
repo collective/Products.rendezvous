@@ -3,7 +3,7 @@
 Introduction
 ============
 
-Products.rendezvous is a timeboard to select a rendez-vous when most people
+Products.rendezvous is a doodle-like timeboard to select a rendez-vous when most people
 are available.
 
 You create a RendezVous content type where you select some days.
