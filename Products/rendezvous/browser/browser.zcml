@@ -11,7 +11,6 @@
      for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
      name="edit_dates"
      class="Products.rendezvous.browser.RDV_RendezVousEdit.RDV_RendezVousEdit"
-     template="templates/RDV_RendezVousEdit.pt"
      permission="cmf.ModifyPortalContent"
      />
 

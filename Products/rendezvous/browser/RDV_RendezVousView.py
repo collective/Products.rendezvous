@@ -14,7 +14,6 @@ __docformat__ = 'plaintext'
 
 from DateTime import DateTime
 ##code-section module-header #fill in your manual code here
-from Products.rendezvous.browser.RDV_RendezVousUtility import RDV_RendezVousUtility
 from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
@@ -22,13 +21,7 @@ from Products.CMFCore.interfaces import ISiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 ##/code-section module-header
 from Acquisition import aq_inner
-from zope import interface
-from zope import component
-from Products.CMFPlone import utils
 from Products.Five import BrowserView
-from zope.interface import implements
-from Products.rendezvous.content.RDV_RendezVous import RDV_RendezVous
-from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 
 class RDV_RendezVousView(BrowserView):

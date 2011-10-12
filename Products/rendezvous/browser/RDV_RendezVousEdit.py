@@ -14,15 +14,15 @@ __docformat__ = 'plaintext'
 
 ##code-section module-header #fill in your manual code here
 from DateTime import DateTime
-from plone.portlets.interfaces import IPortletRenderer
-from plone.app.portlets.portlets import calendar
-from plone.portlets.interfaces import IPortletManager
-from zope.component import getUtility, getMultiAdapter
 from Products.CMFCore.utils import getToolByName
 from plone.app.portlets.portlets.calendar import Renderer as CalRenderer
 from plone.memoize.compress import xhtml_compress
 from Acquisition import aq_inner
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.Five import BrowserView
+
 from Products.rendezvous.browser.RDV_RendezVousUtility import RDV_RendezVousUtility
+
 
 class _RDV_Calendar(CalRenderer):
     """overload the calendar for removing events
@@ -37,7 +37,6 @@ class _RDV_Calendar(CalRenderer):
         return xhtml_compress(self._template())
 
     def getDatesForCalendar(self):
-        context = aq_inner(self.context)
         year = self.year
         month = self.month
         weeks_ = self.calendar.getWeeksList(month, year)
@@ -60,14 +59,6 @@ class _RDV_Calendar(CalRenderer):
             weeks.append(week)
         return weeks
 ##/code-section module-header
-
-from zope import interface
-from zope import component
-from Products.CMFPlone import utils
-from Products.Five import BrowserView
-from zope.interface import implements
-from Products.rendezvous.content.RDV_RendezVous import RDV_RendezVous
-from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 
 
 class RDV_RendezVousEdit(BrowserView):
@@ -92,7 +83,6 @@ class RDV_RendezVousEdit(BrowserView):
             return self.__dict__[key]
         except KeyError:
             return getattr(self.renderer, key)
-
 
     def getNbColumns(self):
         """Return the number of columns
@@ -119,7 +109,7 @@ class RDV_RendezVousEdit(BrowserView):
         return RDV_RendezVousUtility.getPropositionsByOrderedDates(self)
 
     def saveChanges(self):
-        context = self.context.aq_inner
+        context = aq_inner(self.context)
         request = self.request
         form = request.form
 
@@ -142,15 +132,13 @@ class RDV_RendezVousEdit(BrowserView):
         if finish:
             # save to the filesystem
             context.setPropositionsByDates(propositions_by_dates)
-            wtool = getToolByName(context, 'portal_workflow')
-            chain = wtool.getChainFor(context.meta_type)
-            if chain[0] == 'EPRIVR_EventWorkflow':
-                request.response.redirect(context.absolute_url() + "/content_status_modify?workflow_action=restrict")
-            else:
-                request.response.redirect(context.absolute_url())
+            request.response.redirect(self.getNextURL())
         elif extend:
             self.incNbColumns()
             request.response.redirect(context.absolute_url() + '/edit_dates')
+
+    def getNextURL(self):
+        return aq_inner(self.context).absolute_url()
 
     def __init__(self, context, request):
         super(RDV_RendezVousEdit, self).__init__(context, request)
@@ -162,12 +150,14 @@ class RDV_RendezVousEdit(BrowserView):
         self.portal_catalog = getToolByName(self.context, 'portal_catalog')
         self.renderer.update()
 
+    index = ViewPageTemplateFile("templates/RDV_RendezVousEdit.pt")
+
     def __call__(self):
         if self.request.get('ajax', 0):
             plone_view = self.context.restrictedTraverse('@@plone')
             return "'%s'" % plone_view.toLocalizedTime(DateTime(self.request['rdvdate']))
         else:
-            return super(RDV_RendezVousEdit, self).__call__()
+            return self.index()
 
 ##code-section module-footer #fill in your manual code here
 ##/code-section module-footer
