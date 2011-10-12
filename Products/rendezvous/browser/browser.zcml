@@ -19,7 +19,6 @@
      for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
      name="rendezvous_view"
      class="Products.rendezvous.browser.RDV_RendezVousView.RDV_RendezVousView"
-     template="templates/RDV_RendezVousView.pt"
      permission="zope2.View"
      />
 

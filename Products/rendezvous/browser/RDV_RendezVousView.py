@@ -19,6 +19,7 @@ from plone.memoize.instance import memoize
 from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from Products.CMFCore.interfaces import ISiteRoot
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 ##/code-section module-header
 from Acquisition import aq_inner
 from zope import interface
@@ -38,6 +39,10 @@ class RDV_RendezVousView(BrowserView):
     AVAILABLE = "available"
     UNAVAILABLE = "unavailable"
     UNKNOWN = "unknown"
+    index = ViewPageTemplateFile("templates/RDV_RendezVousView.pt")
+
+    def __call__(self, *args, **kw):
+        return self.index(*args, **kw)
     ##/code-section class-header_RDV_RendezVousView
 
     @memoize
