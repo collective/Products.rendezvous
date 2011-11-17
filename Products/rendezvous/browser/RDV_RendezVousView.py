@@ -19,9 +19,25 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import getUtility
 from Products.CMFCore.interfaces import ISiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from AccessControl import getSecurityManager
 ##/code-section module-header
 from Acquisition import aq_inner
 from Products.Five import BrowserView
+
+
+class CloseRendezVous(BrowserView):
+
+    def __call__(self):
+        self.context.closed = True
+        self.request.response.redirect(self.context.absolute_url())
+        return u""
+
+class ReopenRendezVous(BrowserView):
+
+    def __call__(self):
+        self.context.closed = False
+        self.request.response.redirect(self.context.absolute_url())
+        return u""
 
 
 class RDV_RendezVousView(BrowserView):
@@ -159,15 +175,21 @@ class RDV_RendezVousView(BrowserView):
         return [p['participation'] for date in self.getPropositionsItemsByOrderedDates()
                          for p in date['props']]
 
+    def canModifyRendezvous(self):
+        """Check if user can modify the rendezvous
+        """
+        context = aq_inner(self.context)
+        sm = getSecurityManager()
+        return sm.checkPermission('Modify portal content', context)
+
     def canCreateEvent(self):
         """Check if user can create an event
         """
         context = aq_inner(self.context)
-        mtool = getToolByName(self.context,
-                               'portal_membership')
-        return mtool.checkPermission('Modify portal content', context) \
-                and mtool.checkPermission('ATContentTypes: Add Event',
-                                          context.getParentNode())
+        sm = getSecurityManager()
+        return sm.checkPermission('Modify portal content', context) \
+                and sm.checkPermission('ATContentTypes: Add Event',
+                                       context.getParentNode())
 
     def rendezvous_create_event(self):
         dates = self.request['date'].split('--')

@@ -7,7 +7,24 @@
 <div metal:fill-slot="main"
      tal:define="member context/portal_membership/getAuthenticatedMember;
                  portal_url context/@@plone_portal_state/portal_url">
-  <p class="rendezvous_help" i18n:translate="help_rendezvous_choice">
+  <form method="post"
+        tal:condition="python: not context.closed and view.canModifyRendezvous()"
+        tal:attributes="action string:${context/absolute_url}/@@close-rendezvous">
+    <input type="submit" name="close_survey" value="Close survey" i18n:attributes="value" />
+  </form>
+  <tal:closed
+     tal:condition="context/closed">
+    <form method="post"
+        tal:condition="python: view.canModifyRendezvous()"
+        tal:attributes="action string:${context/absolute_url}/@@reopen-rendezvous">
+      <input type="submit" name="reopen_survey" value="Reopen survey" i18n:attributes="value" />
+    </form>
+    <div tal:condition="python: not view.canModifyRendezvous()" i18n:translate="">
+      The survey is closed.
+    </div>
+  </tal:closed>
+  <p class="rendezvous_help" i18n:translate="help_rendezvous_choice"
+     tal:condition="not: context/closed">
     Click on a cell to mark the option is available for you, and click on it again to mark it as unavailable.
     Then click on 'save'.
   </p>
@@ -67,9 +84,10 @@
                                props row/props;"
                        repeat="prop props">
                 <td tal:define="klass python:view.getParticipationClass(member.id, prop['participation']);
+                                klass python:context.closed and klass or 'selectable ' + klass;
                                 available python:klass == view.AVAILABLE;
                                 unknown python:klass == view.UNKNOWN"
-                    tal:attributes="class string:selectable ${klass}">
+                    tal:attributes="class string:${klass}">
                   <span tal:content="python:available and 'OK' or (unknown and '?') or ''" />
                   <input type="hidden"
                          name="propositions:list"
@@ -93,7 +111,9 @@
       </tr>
     </tbody>
   </table>
-  <input type="submit" name="save" value="Save" i18n:attributes="value" />
+  <input
+    tal:condition="not: context/closed"
+    type="submit" name="save" value="Save" i18n:attributes="value" />
   </form>
 
 

@@ -65,6 +65,7 @@ class RDV_RendezVous(OrderedBaseFolder, BrowserDefaultMixin):
     schema = RDV_RendezVous_schema
 
     ##code-section class-header #fill in your manual code here
+    closed = False
     ##/code-section class-header
 
     # Methods

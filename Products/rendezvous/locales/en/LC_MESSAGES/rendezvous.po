@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rendezvous\n"
-"POT-Creation-Date: 2011-09-14 12:13+0000\n"
+"POT-Creation-Date: 2011-11-17 11:08+0000\n"
 "PO-Revision-Date: 2008-11-18 16:05+0100\n"
 "Last-Translator: Vincent Fretin <vincentfretin@ecreall.com>\n"
 "Language-Team: English\n"
@@ -16,8 +16,12 @@ msgstr ""
 "Preferred-Encodings: latin1 utf-8\n"
 "Domain: rendezvous\n"
 
-#: ./browser/templates/RDV_RendezVousView.pt:17
+#: ./browser/templates/RDV_RendezVousView.pt:33
 msgid "Click here and select a date to create the event from this poll"
+msgstr ""
+
+#: ./browser/templates/RDV_RendezVousView.pt:13
+msgid "Close survey"
 msgstr ""
 
 #. Default: "Continue"
@@ -25,14 +29,22 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
+#: ./browser/templates/RDV_RendezVousView.pt:20
+msgid "Reopen survey"
+msgstr ""
+
 #. Default: "Save"
-#: ./browser/templates/RDV_RendezVousView.pt:96
+#: ./browser/templates/RDV_RendezVousView.pt:112
 msgid "Save"
 msgstr ""
 
 #. Default: "Selected dates:"
 #: ./browser/templates/RDV_RendezVousEdit.pt:34
 msgid "Selected dates:"
+msgstr ""
+
+#: ./browser/templates/RDV_RendezVousView.pt:22
+msgid "The survey is closed."
 msgstr ""
 
 #. Default: "With kind regards,"
@@ -56,7 +68,7 @@ msgid "help_rendezvous"
 msgstr ""
 
 #. Default: "Click on a cell to mark the option is available for you, and click on it again to mark it as unavailable. Then click on 'save'."
-#: ./browser/templates/RDV_RendezVousView.pt:10
+#: ./browser/templates/RDV_RendezVousView.pt:26
 msgid "help_rendezvous_choice"
 msgstr ""
 

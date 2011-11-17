@@ -46,6 +46,20 @@
 
   <browser:page
      for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
+     name="close-rendezvous"
+     class="Products.rendezvous.browser.RDV_RendezVousView.CloseRendezVous"
+     permission="cmf.ModifyPortalContent"
+     />
+
+  <browser:page
+     for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
+     name="reopen-rendezvous"
+     class="Products.rendezvous.browser.RDV_RendezVousView.ReopenRendezVous"
+     permission="cmf.ModifyPortalContent"
+     />
+
+  <browser:page
+     for="Products.rendezvous.content.interfaces.IRDV_RendezVous"
      name="add-participation"
      class="Products.rendezvous.browser.RDV_RendezVousView.RDV_RendezVousView"
      attribute="addParticipation"
