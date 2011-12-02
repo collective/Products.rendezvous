@@ -84,9 +84,9 @@
                                props row/props;"
                        repeat="prop props">
                 <td tal:define="klass python:view.getParticipationClass(member.id, prop['participation']);
-                                klass python:context.closed and klass or 'selectable ' + klass;
                                 available python:klass == view.AVAILABLE;
-                                unknown python:klass == view.UNKNOWN"
+                                unknown python:klass == view.UNKNOWN;
+                                klass python:context.closed and klass or 'selectable ' + klass;"
                     tal:attributes="class string:${klass}">
                   <span tal:content="python:available and 'OK' or (unknown and '?') or ''" />
                   <input type="hidden"
