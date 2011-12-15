@@ -53,3 +53,7 @@
 #rendezvous-choose-date span {
     text-decoration: underline;
 }
+
+#survey-closed {
+    color: red;
+}

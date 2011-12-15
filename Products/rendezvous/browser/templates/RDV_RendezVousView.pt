@@ -19,9 +19,9 @@
         tal:attributes="action string:${context/absolute_url}/@@reopen-rendezvous">
       <input type="submit" name="reopen_survey" value="Reopen survey" i18n:attributes="value" />
     </form>
-    <div tal:condition="python: not view.canModifyRendezvous()" i18n:translate="">
+    <p id="survey-closed" tal:condition="python: not view.canModifyRendezvous()" i18n:translate="">
       The survey is closed.
-    </div>
+    </p>
   </tal:closed>
   <p class="rendezvous_help" i18n:translate="help_rendezvous_choice"
      tal:condition="not: context/closed">
