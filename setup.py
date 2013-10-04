@@ -40,6 +40,12 @@ setup(name='Products.rendezvous',
           'setuptools',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+        'test': [
+            'plone.app.testing',
+            'plone.app.robotframework',
+        ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       """,

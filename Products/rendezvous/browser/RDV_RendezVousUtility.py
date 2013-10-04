@@ -17,10 +17,6 @@ from Acquisition import aq_inner
 import copy
 ##/code-section module-header
 
-from zope.interface import implements
-
-from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
-
 
 class RDV_RendezVousUtility:
     """
@@ -45,9 +41,6 @@ class RDV_RendezVousUtility:
     def toggleSelectedDate(view, selected_date):
         """Toogle selected date
         """
-        context = aq_inner(view.context)
-        request = view.request
-        uid = context.UID()
         selected_dates = RDV_RendezVousUtility.getPropositionsByDates(view)
         if not selected_date in selected_dates:
             selected_dates[selected_date] = []

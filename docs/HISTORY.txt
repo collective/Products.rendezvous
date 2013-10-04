@@ -4,7 +4,8 @@ Changelog
 1.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Migrate tests to plone.app.testing.
+  [vincentfretin]
 
 
 1.4 (2011-12-22)

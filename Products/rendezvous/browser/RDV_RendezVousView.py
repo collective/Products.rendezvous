@@ -134,7 +134,8 @@ class RDV_RendezVousView(BrowserView):
 
     def addParticipation(self):
         context = self.context.aq_inner
-        actor = self.request.AUTHENTICATED_USER
+        mtool = getToolByName(context, "portal_membership")
+        actor = mtool.getAuthenticatedMember()
         participant = actor.getId()
         try:
             selected_propositions = self.request.form['propositions']
