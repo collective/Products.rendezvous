@@ -93,7 +93,7 @@ class RDV_RendezVousEdit(BrowserView):
             nb = self.request.SESSION['rendezvous']['nb_columns'][uid]
         except KeyError:
             nb = self.NB_COLUMNS
-        for date, propositions in propositionsbydates.items():
+        for propositions in propositionsbydates.values():
             nb = max(len(propositions), nb)
         return nb
 

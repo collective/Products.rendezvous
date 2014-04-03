@@ -10,9 +10,25 @@ rendezvous.init = function(){
 rendezvous.initchoicesselection = function(){
 	jq('#rendezvous-dates-select a.calendar-date').click(function(){
 		/* first submit the form in case it has been modified */
+	    var datelink = jq(this);
 		var formData = jq('form#rendezvous-edit').serialize();
 		var formAction = jq('form#rendezvous-edit').attr('action');
-		jq.post(formAction, formData, function(){});
+		jq.post(formAction, formData, function(){
+	        jq.get(datelink.attr('href') + '&ajax_load=1', function(html){
+	            jq('#rendezvous-edit').html(jq(html).find('#rendezvous-edit').html());
+	            rendezvous.initchoicesselection();
+	        });
+		});
+		return false;
+	});
+	jq('#rendezvous-hours-select input[name="extend"]').click(function(){
+        var formData = jq('form#rendezvous-edit').serialize();
+        var formAction = jq('form#rendezvous-edit').attr('action') + '?extend=1';
+        jq.post(formAction, formData, function(html){
+            jq('#rendezvous-edit').html(jq(html).find('#rendezvous-edit').html());
+            rendezvous.initchoicesselection();
+        });
+        return false;
 	});
 };
 
