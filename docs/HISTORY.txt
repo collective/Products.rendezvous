@@ -4,6 +4,9 @@ Changelog
 1.4.2 (unreleased)
 ------------------
 
+- Fix monthes navigation.
+  [thomasdesvenain]
+
 - On edit view, ajax behavior on date selection and on columns adding.
   [thomasdesvenain]
 
