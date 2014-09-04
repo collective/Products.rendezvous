@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4.2 (unreleased)
+1.4.2 (2014-09-03)
 ------------------
 
 - Fix monthes navigation.
